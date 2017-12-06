@@ -1,13 +1,13 @@
 Newsroom
 ========
 
-![Final List](screenshot/phase1_index.png)
+![Final List](screenshot/phase1_index_login.png)
 
 A web application for storing and managing news stories.
 
 ## Milestones
 
-### - [x] Phase 1 (Running)
+### - [x] Phase 1 (Completed)
 
    - Necessary package installation
    
@@ -19,9 +19,9 @@ A web application for storing and managing news stories.
 
    - A page to create new news
 
-### - [x] Phase 2 
+### - [x] Phase 2 (Running) 
 
-   - Add JSON format for each news
+   - Add edit delete functionalities for each news
 
    - Update story list page to include JSON link
 
@@ -73,7 +73,7 @@ The following environment are used to develop the application:
 
 - Run the `application.py`
 
-		$ python webapp/manage.py runserver
+		$ python manage.py runserver
 		
 ### Database migration
 

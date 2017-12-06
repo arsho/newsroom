@@ -1,7 +1,4 @@
-{% extends 'newsroom/base.html' %}
-{% block head %}
-{% endblock %}
-
+{% extends 'newsroom/base_visitor.html' %}
 {% block content %}
 
 {% if news %}
@@ -24,6 +21,4 @@
 {% else %}
 News does not exist.
 {% endif %}
-{% endblock %}
-{% block script %}
 {% endblock %}

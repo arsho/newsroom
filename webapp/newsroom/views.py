@@ -4,8 +4,9 @@ from __future__ import unicode_literals
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
-from django.db.models import Q
+from django.contrib import messages
 from django.urls import reverse
+
 
 from .forms import NewsForm, UserForm
 from .models import News
@@ -14,10 +15,10 @@ from .models import News
 # Create your views here.
 
 def index(request):
+    news_list = News.objects.all()
     if not request.user.is_authenticated():
-        return render(request, 'newsroom/login.html')
+        return render(request, 'newsroom/index_visitor.html', {'news_list': news_list})
     else:
-        news_list = News.objects.all()
         return render(request, 'newsroom/index.html', {'news_list': news_list})
 
 
@@ -38,10 +39,11 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                news_list = News.objects.filter(news_publisher=request.user)
-                return render(request, 'newsroom/index.html', {'news_list': news_list})
+                return HttpResponseRedirect(reverse('newsroom:index'))
             else:
                 return render(request, 'newsroom/login.html', {'error_message': 'Account is disabled'})
+        else:
+            return render(request, 'newsroom/login.html', {'error_message': 'Wrong username or password'})
     return render(request, 'newsroom/login.html')
 
 
@@ -58,8 +60,8 @@ def register_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                news_list = News.objects.filter(news_publisher=request.user)
-                return render(request, 'newsroom/index.html', {'news_list': news_list})
+                return HttpResponseRedirect(reverse('newsroom:index'))
+                #news_list = News.objects.filter(news_publisher=request.user)
 
     context = {
         'form': form
@@ -82,10 +84,32 @@ def add_news(request):
         }
         return render(request, 'newsroom/add_news.html', context)
 
-
-def detail(request, pk):
+def delete_news(request):
     if not request.user.is_authenticated():
         return render(request, 'newsroom/login.html')
     else:
-        news = get_object_or_404(News, pk=pk)
+        if request.method == 'POST':
+            id = request.POST.get('delete_news_id', None)
+            try:
+                existing_news = News.objects.get(id=id)
+                if request.user == existing_news.news_publisher:
+                    existing_news.delete()
+                    messages.success(request, 'Deletion of the selected news is successful')
+                    return HttpResponseRedirect(reverse('newsroom:index'))
+                else:
+                    error_message = 'You do not have the permission to delete this'
+                    messages.error(request, error_message)
+                    return HttpResponseRedirect(reverse('newsroom:index'))
+            except:
+                error_message = 'The news does not exist'
+                messages.error(request, error_message)
+                return HttpResponseRedirect(reverse('newsroom:index'))
+
+
+
+def detail(request, pk):
+    news = get_object_or_404(News, pk=pk)
+    if not request.user.is_authenticated():
+        return render(request, 'newsroom/detail_visitor.html', {'news': news})
+    else:
         return render(request, 'newsroom/detail.html', {'news': news})
