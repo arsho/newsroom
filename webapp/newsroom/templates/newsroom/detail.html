@@ -1,0 +1,16 @@
+{% extends 'newsroom/base.html' %}
+{% block content %}
+
+{% if news %}
+<h2>News No.: {{ news.id }}</h2>
+<h4>News Title: {{ news.news_title }}</h4>
+<div>
+    <strong>Author: {{ news.news_author }}, </strong>
+    <strong>Publisher: {{ news.news_publisher }}</strong>
+</div>
+<small>Date: {{ news.news_date }}</small>
+<p>Details: {{ news.news_body }}</p>
+{% else %}
+News does not exist.
+{% endif %}
+{% endblock %}
