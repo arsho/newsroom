@@ -19,27 +19,15 @@ A web application for storing and managing news stories.
 
    - A page to create new news
 
-### - [x] Phase 2 (Running) 
-
-   - Add edit and delete functionalities for each news
-
-   - Update story list page to include JSON link
-
-### - [x] Phase 3 
- 
-   - Add date field in news form
-
-   - Modify database design
-   
-   - Add XML format for each news
-
-   - Update story list page to include XML link
-
-### - [x] Phase 4 
+### - [x] Phase 2 (Completed) 
 
    - Add edit and delete functinoalities for each news
 
    - Delete function should include confirmation alert
+
+### - [x] Phase 3 (Running)
+ 
+   - Django Rest Framework
    
 ## Software Used
 
