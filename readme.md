@@ -1,7 +1,7 @@
 Newsroom
 ========
 
-![Final List](screenshot/phase1_index_login.png)
+![Final List](screenshot/phase2_index.png)
 
 A web application for storing and managing news stories.
 
@@ -21,7 +21,7 @@ A web application for storing and managing news stories.
 
 ### - [x] Phase 2 (Running) 
 
-   - Add edit delete functionalities for each news
+   - Add edit and delete functionalities for each news
 
    - Update story list page to include JSON link
 

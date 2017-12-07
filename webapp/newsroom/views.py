@@ -6,13 +6,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.urls import reverse
-
+from django.contrib.auth.decorators import login_required
 
 from .forms import NewsForm, UserForm
 from .models import News
 
-
-# Create your views here.
 
 def index(request):
     news_list = News.objects.all()
@@ -22,6 +20,7 @@ def index(request):
         return render(request, 'newsroom/index.html', {'news_list': news_list})
 
 
+# @login_required
 def logout_user(request):
     logout(request)
     form = UserForm(request.POST or None)
@@ -39,11 +38,15 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
+                message = 'Successfully logged in'
+                messages.success(request, message)
                 return HttpResponseRedirect(reverse('newsroom:index'))
             else:
-                return render(request, 'newsroom/login.html', {'error_message': 'Account is disabled'})
+                message = 'Account is disabled'
+                messages.error(request, message)
         else:
-            return render(request, 'newsroom/login.html', {'error_message': 'Wrong username or password'})
+            message = 'Wrong username or password'
+            messages.error(request, message)
     return render(request, 'newsroom/login.html')
 
 
@@ -61,7 +64,7 @@ def register_user(request):
             if user.is_active:
                 login(request, user)
                 return HttpResponseRedirect(reverse('newsroom:index'))
-                #news_list = News.objects.filter(news_publisher=request.user)
+                # news_list = News.objects.filter(news_publisher=request.user)
 
     context = {
         'form': form
@@ -71,22 +74,52 @@ def register_user(request):
 
 def add_news(request):
     if not request.user.is_authenticated():
-        return render(request, 'newsroom/login.html')
+        return HttpResponseRedirect(reverse('newsroom:login_user'))
     else:
         form = NewsForm(request.POST or None)
         if form.is_valid():
             news = form.save(commit=False)
             news.news_publisher = request.user
             news.save()
+            message = 'News is saved successfully'
+            messages.success(request, message)
             return HttpResponseRedirect(reverse('newsroom:index'))
         context = {
-            "form": form
+            "form": form,
+            'page_type': 'Add'
         }
-        return render(request, 'newsroom/add_news.html', context)
+        return render(request, 'newsroom/add_edit_news.html', context)
+
+
+def edit_news(request, pk):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('newsroom:login_user'))
+    else:
+        existing_news = get_object_or_404(News, pk=pk)
+        if existing_news.news_publisher != request.user:
+            message = 'You do not have permission to edit this news'
+            messages.error(request, message)
+            return HttpResponseRedirect(reverse('newsroom:index'))
+        else:
+            form = NewsForm(request.POST or None, instance=existing_news)
+            if request.method == 'POST':
+                if form.is_valid():
+                    news = form.save(commit=False)
+                    news.news_publisher = request.user
+                    news.save()
+                    message = 'News is updated successfully'
+                    messages.success(request, message)
+                    return HttpResponseRedirect(reverse('newsroom:index'))
+                else:
+                    message = 'Form is not valid'
+                    messages.error(request, message)
+            context = {'form': form, 'page_type': 'edit'}
+            return render(request, 'newsroom/add_edit_news.html', context)
+
 
 def delete_news(request):
     if not request.user.is_authenticated():
-        return render(request, 'newsroom/login.html')
+        return HttpResponseRedirect(reverse('newsroom:login_user'))
     else:
         if request.method == 'POST':
             id = request.POST.get('delete_news_id', None)
@@ -104,7 +137,6 @@ def delete_news(request):
                 error_message = 'The news does not exist'
                 messages.error(request, error_message)
                 return HttpResponseRedirect(reverse('newsroom:index'))
-
 
 
 def detail(request, pk):

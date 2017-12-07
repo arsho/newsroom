@@ -1,0 +1,25 @@
+{% extends 'newsroom/base.html' %}
+{% block content %}
+<div class="card">
+    <h4 class="card-header">
+        <span class="title_case">{{ page_type }}</span> News
+    </h4>
+    <div class="card-body">
+        <div class="card-text">
+            <form action="" method="post" role="form" class="form-horizontal">
+                {% csrf_token %}
+                {% include 'newsroom/form_template.html' %}
+                <div class="form-group row">
+                    <div class="offset-sm-4 col-sm-8">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="title_case">{{ page_type }}</span> News
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

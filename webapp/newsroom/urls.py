@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^login_user/$', views.login_user, name='login_user'),
     url(r'^logout_user/$', views.logout_user, name='logout_user'),
     url(r'^add_news/$', views.add_news, name='add_news'),
+    url(r'^edit_news/(?P<pk>[0-9]+)$', views.edit_news, name='edit_news'),
     url(r'^delete_news/$', views.delete_news, name='delete_news'),
     url(r'^(?P<pk>[0-9]+)/$', views.detail, name='detail')
 ]
