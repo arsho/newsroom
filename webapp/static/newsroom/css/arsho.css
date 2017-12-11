@@ -1,0 +1,44 @@
+/*
+ * Author: Ahmedur Rahman Shovon
+ * Email: shovon.sylhet@gmail.com
+ * Github: https://github.com/arsho
+ */
+
+body {
+    font-family: 'Exo 2', sans-serif;
+    color: #0A2848;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-top: 60px;
+}
+
+a {
+    color: #2d7788;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #1a454f;
+}
+
+a:focus {
+    text-decoration: none;
+}
+
+.title_case {
+    text-transform: capitalize;
+}
+
+.datamate_red {
+    color: #a94442;
+}
+
+.datamate_blue {
+    color: #0A2848;
+}
+

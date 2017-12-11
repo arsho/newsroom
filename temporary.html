@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Check JS</h2>
+<div id="sentence">
+    what ever i am writing here or have wrote this is all my (first) imagination
+    (second) creation, words with all 5 vowels, which i got from dictionary
+    one by one page, i think all will enjoy and
+    increase knowledge “that’s my education.”
+</div>
+<button id="btn" onclick='i_am_making_wordsStartsWithVowel_bolder("sentence")'>Capitalize</button>
+<script>
+
+    function i_am_making_wordsStartsWithVowel_bolder(elementID) {
+// We are taking an html element and make all the words that starts with a vowel bold.
+        var element = document.getElementById(elementID);
+        var str = element.innerHTML;
+        var s = '';
+        var spaceFlag = 0;
+        var capitalFlag = 0;
+        for (i = 0; i < str.length; i++) {
+            if (spaceFlag == 1 || i == 0) {
+                if (str[i].toLowerCase() == 'a' ||
+                    str[i].toLowerCase() == 'e' ||
+                    str[i].toLowerCase() == 'i' ||
+                    str[i].toLowerCase() == 'o' ||
+                    str[i].toLowerCase() == 'u') {
+                    capitalFlag = 1;
+                }
+            }
+            if (str[i] == " " && spaceFlag == 0) {
+                spaceFlag = 1;
+                capitalFlag = 0;
+            }
+            else if (str[i] != " ") {
+                spaceFlag = 0;
+            }
+            if (capitalFlag == 1) {
+                s += str[i].toUpperCase();
+            }
+            else{
+                s+=str[i];
+            }
+        }
+        element.innerHTML=s;
+    }
+
+</script>
+
+<script>
+    // var value = 0;
+    // function doSomething(){
+    //    value++;
+    //    console.log("I am doing an important task for "+ value+" times.");
+    // }
+    // var intervalId = setInterval(doSomething, 1000);
+    // if(value>5){
+    //    clearInterval(intervalId);
+    // }
+
+    // var value = 0;
+    //
+    // function showValue() {
+    //     console.log(value);
+    //     value++;
+    //     if (value > 5) {
+    //         clearInterval(intervalId);
+    //     }
+    // }
+    //
+    // var intervalId = setInterval(showValue, 1000);
+
+    // var timerId = window.setInterval(function(){
+    //
+    // }, 3 * 1000);
+    // clearInterval(timerId);
+
+    // var promise = new Promise(function (resolve, reject) {
+    //     if (2 == "2") {
+    //         resolve("Perfect!");
+    //     }
+    //     else {
+    //         reject(Error("It broke"));
+    //     }
+    // })
+    //
+    // promise.then(function (result) {
+    //     console.log(result);
+    // }, function (error) {
+    //     console.log(error);
+    // });
+    //greetingPromise();
+
+    // var foo = (function (a) {
+    //    var bar = 100;
+    //    var pickle = (function (b){
+    //        return bar + b;
+    //    });
+    //    return a + pickle(25);
+    // })(500);
+    // console.log(foo);
+    // console.log(1 < 2 < 3);
+    // console.log(3 > 2 > 1);
+    // var foo = false;
+    // console.log(foo + true);
+    // console.log(foo + 'true');
+    // console.log(foo - 1);
+
+    // var foo = 'some values';
+    // delete foo;
+    // console.log(foo);
+    // var bar = {};
+    // bar.stomach = 'full';
+    // delete bar.stomach;
+    // console.log(bar.stomach);
+    //
+    // // some values
+    // // undefined
+
+    // function check_values() {
+    //     "use strict";
+    //     console.log(i);
+    //     console.log(j);
+    //     for (var i = 0; i < 3; i++) {}
+    //     for (let j = 0; j < 3; j++) {}
+    // }
+    // check_values();
+
+    // undefined
+    // Uncaught ReferenceError: j is not defined
+
+
+</script>
+
+
+</body>
+</html>
