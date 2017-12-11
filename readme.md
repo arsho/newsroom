@@ -1,9 +1,10 @@
 Newsroom
 ========
 
-![Final List](screenshot/phase2_index.png)
+![Final List](screenshot/drf_news_list.png)
 
 A web application for storing and managing news stories.
+This branch is developed using Django REST Framework (DRF)
 
 ## Milestones
 
@@ -38,6 +39,8 @@ The following environment are used to develop the application:
 - **Python** : 2.7 (64 bit)
 - **Django** : 1.11
 - **Database** : SQLite
+- **Django REST Framework** : 3.7.3
+
 
 ### Necessary Package Installation
 
