@@ -1,7 +1,7 @@
 # Second attempt: Hyperlinked model serializers
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import News
+from ..models import News
 
 
 class NewsSerializer(serializers.HyperlinkedModelSerializer):

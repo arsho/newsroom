@@ -1,10 +1,10 @@
 Newsroom
 ========
 
-![Final List](screenshot/drf_news_list.png)
+![Final List](screenshot/merged_index.png)
 
 A web application for storing and managing news stories.
-This branch is developed using Django REST Framework (DRF)
+It includes both a web application and a RESTful API using Django REST Framework (DRF)
 
 ## Milestones
 
@@ -26,9 +26,9 @@ This branch is developed using Django REST Framework (DRF)
 
    - Delete function should include confirmation alert
 
-### - [x] Phase 3 (Running)
+### - [x] Phase 3 (Completed)
  
-   - Django Rest Framework
+   - API using Django Rest Framework
    
 ## Software Used
 
@@ -81,3 +81,9 @@ The following environment are used to develop the application:
 - Create super user
 
 		$ python manage.py createsuperuser
+
+### URLS
+
+- Web application URL: http://127.0.0.1:8000/
+
+- API URL: http://127.0.0.1:8000/api/
