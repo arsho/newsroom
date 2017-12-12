@@ -18,8 +18,13 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+<<<<<<< Updated upstream
     url(r'^', include('newsroom.urls')),
     url(r'^api/', include('newsroom.rest_api.urls')),
+=======
+    url(r'^newsroom/', include('newsroom.urls')),
+    url(r'^newsroom/api/', include('newsroom.rest_api.urls')),
+>>>>>>> Stashed changes
 ]
 
 urlpatterns += [

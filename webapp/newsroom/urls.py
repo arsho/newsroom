@@ -13,4 +13,8 @@ urlpatterns = [
     url(r'^edit_news/(?P<pk>[0-9]+)$', views.edit_news, name='edit_news'),
     url(r'^delete_news/$', views.delete_news, name='delete_news'),
     url(r'^(?P<pk>[0-9]+)/$', views.detail, name='detail'),
+<<<<<<< Updated upstream
+=======
+    url(r'^api/$', views.detail, name='detail'),
+>>>>>>> Stashed changes
 ]

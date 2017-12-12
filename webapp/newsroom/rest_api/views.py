@@ -12,6 +12,15 @@ from ..models import News
 from .serializers import NewsSerializer, UserSerializer
 from .permissions import IsOwnerOrReadOnly
 
+<<<<<<< Updated upstream
+=======
+@api_view(['GET'])
+def api_index(request, format=None):
+    return Response({
+        'news_list': reverse('news-list', request=request, format=format),
+        'user_list': reverse('user-list', request=request, format=format),
+    })
+>>>>>>> Stashed changes
 
 class NewsList(generics.ListCreateAPIView):
     queryset = News.objects.all()
