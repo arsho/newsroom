@@ -16,7 +16,7 @@ class News(models.Model):
     news_title = models.CharField(max_length = 200)
     news_body = models.TextField()
     news_author = models.CharField(max_length = 200)
-    news_publisher = models.ForeignKey(User, on_delete = models.CASCADE)
+    news_publisher = models.ForeignKey('auth.User', related_name='news_list', on_delete = models.CASCADE)
     news_date = models.DateField('date published')
 
     def __str__(self):
