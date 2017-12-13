@@ -1,9 +1,10 @@
 Newsroom
 ========
 
-![Final List](screenshot/phase2_index.png)
+![Final List](screenshot/merged_index.png)
 
 A web application for storing and managing news stories.
+It includes both a web application and a RESTful API using Django REST Framework (DRF)
 
 ## Milestones
 
@@ -25,9 +26,9 @@ A web application for storing and managing news stories.
 
    - Delete function should include confirmation alert
 
-### - [x] Phase 3 (Running)
+### - [x] Phase 3 (Completed)
  
-   - Django Rest Framework
+   - API using Django Rest Framework
    
 ## Software Used
 
@@ -38,6 +39,8 @@ The following environment are used to develop the application:
 - **Python** : 2.7 (64 bit)
 - **Django** : 1.11
 - **Database** : SQLite
+- **Django REST Framework** : 3.7.3
+
 
 ### Necessary Package Installation
 
@@ -78,3 +81,9 @@ The following environment are used to develop the application:
 - Create super user
 
 		$ python manage.py createsuperuser
+
+### URLS
+
+- Web application URL: http://127.0.0.1:8000/
+
+- API URL: http://127.0.0.1:8000/api/
