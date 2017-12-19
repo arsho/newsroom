@@ -15,6 +15,63 @@
 <button id="btn" onclick='i_am_making_wordsStartsWithVowel_bolder("sentence")'>Capitalize</button>
 <script>
 
+
+    // Question
+// We have a string and we want to capitalize the words
+// which start with a vowel.
+
+// It would be great if you can wrap it up within 5 minutes
+
+function i_am_making_wordsStartsWithVowel_bolder() {
+     var str = "what ever i am writing here or have wrote this is all my (first) imagination (second) creation, words with all 5 vowels, which i got from dictionary one by one page, i think all will enjoy and increase knowledge thats my education.";
+     var s = '';
+     var spaceFlag = 0;
+     var capitalFlag = 0;
+     for (var i = 0; i < str.length; i++) {
+         if (spaceFlag == 1 || i == 0) {
+             if (str[i].toLowerCase() == 'a' ||
+                 str[i].toLowerCase() == 'e' ||
+                 str[i].toLowerCase() == 'i' ||
+                 str[i].toLowerCase() == 'o' ||
+                 str[i].toLowerCase() == 'u') {
+                 capitalFlag = 1;
+             }
+         }
+         if (str[i] == " " && spaceFlag == 0) {
+             spaceFlag = 1;
+             capitalFlag = 0;
+         }
+         else if (str[i] != " ") {
+             spaceFlag = 0;
+         }
+         if (capitalFlag == 1) {
+             s += str[i].toUpperCase();
+         }
+
+         else{
+             s+=str[i];
+         }
+
+     }
+     return s;
+}
+
+console.log(i_am_making_wordsStartsWithVowel_bolder());
+
+
+
+// When I want to prevent other event handlers from executing after a certain event is fired, I can use one of two techniques.
+// Using event.preventDefault()
+$('a').click(function (e) {
+    // custom handling here
+    e.preventDefault();
+});
+// Using return false
+$('a').click(function () {
+    // custom handling here
+    return false;
+});
+
     function i_am_making_wordsStartsWithVowel_bolder(elementID) {
 // We are taking an html element and make all the words that starts with a vowel bold.
         var element = document.getElementById(elementID);
@@ -42,11 +99,11 @@
             if (capitalFlag == 1) {
                 s += str[i].toUpperCase();
             }
-            else{
-                s+=str[i];
+            else {
+                s += str[i];
             }
         }
-        element.innerHTML=s;
+        element.innerHTML = s;
     }
 
 </script>
